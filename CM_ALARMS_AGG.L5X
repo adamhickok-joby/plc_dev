@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="36.00" TargetName="GeneralPanel_Foundation" TargetType="Controller" ContainsContext="true">
+  <Controller Use="Context" Name="GeneralPanel_Foundation">
+    <Programs Use="Context">
+      <Program Name="MainProgram" Use="Context">
+        <Routines Use="Context">
+
+          <Routine Name="CM_ALARMS_AGG" Type="ST">
+            <STContent>
+              <![CDATA[
+(* ============================================================
+   CM_ALARMS_AGG — Alarm aggregate rollup into CM_ALARMS
+   No loops — explicit OR chains only.
+   ============================================================ *)
+
+(* HiHi alarms — group 1: channels 0-9, group 2: channels 10-19 *)
+CM_ALARMS.HIHI_1 := CM_AIN[0].HHAI OR CM_AIN[1].HHAI OR CM_AIN[2].HHAI OR CM_AIN[3].HHAI OR CM_AIN[4].HHAI OR
+                    CM_AIN[5].HHAI OR CM_AIN[6].HHAI OR CM_AIN[7].HHAI OR CM_AIN[8].HHAI OR CM_AIN[9].HHAI;
+
+CM_ALARMS.HIHI_2 := CM_AIN[10].HHAI OR CM_AIN[11].HHAI OR CM_AIN[12].HHAI OR CM_AIN[13].HHAI OR CM_AIN[14].HHAI OR
+                    CM_AIN[15].HHAI OR CM_AIN[16].HHAI OR CM_AIN[17].HHAI OR CM_AIN[18].HHAI OR CM_AIN[19].HHAI;
+
+(* Hi alarms *)
+CM_ALARMS.HI_1 := CM_AIN[0].HAI OR CM_AIN[1].HAI OR CM_AIN[2].HAI OR CM_AIN[3].HAI OR CM_AIN[4].HAI OR
+                  CM_AIN[5].HAI OR CM_AIN[6].HAI OR CM_AIN[7].HAI OR CM_AIN[8].HAI OR CM_AIN[9].HAI;
+
+CM_ALARMS.HI_2 := CM_AIN[10].HAI OR CM_AIN[11].HAI OR CM_AIN[12].HAI OR CM_AIN[13].HAI OR CM_AIN[14].HAI OR
+                  CM_AIN[15].HAI OR CM_AIN[16].HAI OR CM_AIN[17].HAI OR CM_AIN[18].HAI OR CM_AIN[19].HAI;
+
+(* Lo alarms *)
+CM_ALARMS.LO_1 := CM_AIN[0].LAI OR CM_AIN[1].LAI OR CM_AIN[2].LAI OR CM_AIN[3].LAI OR CM_AIN[4].LAI OR
+                  CM_AIN[5].LAI OR CM_AIN[6].LAI OR CM_AIN[7].LAI OR CM_AIN[8].LAI OR CM_AIN[9].LAI;
+
+CM_ALARMS.LO_2 := CM_AIN[10].LAI OR CM_AIN[11].LAI OR CM_AIN[12].LAI OR CM_AIN[13].LAI OR CM_AIN[14].LAI OR
+                  CM_AIN[15].LAI OR CM_AIN[16].LAI OR CM_AIN[17].LAI OR CM_AIN[18].LAI OR CM_AIN[19].LAI;
+
+(* LoLo alarms *)
+CM_ALARMS.LOLO_1 := CM_AIN[0].LLAI OR CM_AIN[1].LLAI OR CM_AIN[2].LLAI OR CM_AIN[3].LLAI OR CM_AIN[4].LLAI OR
+                    CM_AIN[5].LLAI OR CM_AIN[6].LLAI OR CM_AIN[7].LLAI OR CM_AIN[8].LLAI OR CM_AIN[9].LLAI;
+
+CM_ALARMS.LOLO_2 := CM_AIN[10].LLAI OR CM_AIN[11].LLAI OR CM_AIN[12].LLAI OR CM_AIN[13].LLAI OR CM_AIN[14].LLAI OR
+                    CM_AIN[15].LLAI OR CM_AIN[16].LLAI OR CM_AIN[17].LLAI OR CM_AIN[18].LLAI OR CM_AIN[19].LLAI;
+
+(* Bad/quality alarms *)
+CM_ALARMS.BAD_1 := CM_AIN[0].BAD OR CM_AIN[1].BAD OR CM_AIN[2].BAD OR CM_AIN[3].BAD OR CM_AIN[4].BAD OR
+                   CM_AIN[5].BAD OR CM_AIN[6].BAD OR CM_AIN[7].BAD OR CM_AIN[8].BAD OR CM_AIN[9].BAD;
+
+CM_ALARMS.BAD_2 := CM_AIN[10].BAD OR CM_AIN[11].BAD OR CM_AIN[12].BAD OR CM_AIN[13].BAD OR CM_AIN[14].BAD OR
+                   CM_AIN[15].BAD OR CM_AIN[16].BAD OR CM_AIN[17].BAD OR CM_AIN[18].BAD OR CM_AIN[19].BAD;
+
+(* Unacknowledged alarms: channel is in alarm AND NOT yet acknowledged *)
+CM_ALARMS.ACKD_1 := (CM_AIN[0].ALARM AND NOT CM_AIN[0].ACKD) OR
+                    (CM_AIN[1].ALARM AND NOT CM_AIN[1].ACKD) OR
+                    (CM_AIN[2].ALARM AND NOT CM_AIN[2].ACKD) OR
+                    (CM_AIN[3].ALARM AND NOT CM_AIN[3].ACKD) OR
+                    (CM_AIN[4].ALARM AND NOT CM_AIN[4].ACKD) OR
+                    (CM_AIN[5].ALARM AND NOT CM_AIN[5].ACKD) OR
+                    (CM_AIN[6].ALARM AND NOT CM_AIN[6].ACKD) OR
+                    (CM_AIN[7].ALARM AND NOT CM_AIN[7].ACKD) OR
+                    (CM_AIN[8].ALARM AND NOT CM_AIN[8].ACKD) OR
+                    (CM_AIN[9].ALARM AND NOT CM_AIN[9].ACKD);
+
+CM_ALARMS.ACKD_2 := (CM_AIN[10].ALARM AND NOT CM_AIN[10].ACKD) OR
+                    (CM_AIN[11].ALARM AND NOT CM_AIN[11].ACKD) OR
+                    (CM_AIN[12].ALARM AND NOT CM_AIN[12].ACKD) OR
+                    (CM_AIN[13].ALARM AND NOT CM_AIN[13].ACKD) OR
+                    (CM_AIN[14].ALARM AND NOT CM_AIN[14].ACKD) OR
+                    (CM_AIN[15].ALARM AND NOT CM_AIN[15].ACKD) OR
+                    (CM_AIN[16].ALARM AND NOT CM_AIN[16].ACKD) OR
+                    (CM_AIN[17].ALARM AND NOT CM_AIN[17].ACKD) OR
+                    (CM_AIN[18].ALARM AND NOT CM_AIN[18].ACKD) OR
+                    (CM_AIN[19].ALARM AND NOT CM_AIN[19].ACKD);
+
+(* Valve fault rollup *)
+CM_ALARMS.VLV_FLT := CM_SOV[0].FAULT OR CM_SOV[1].FAULT OR CM_SOV[2].FAULT OR CM_SOV[3].FAULT OR
+                     CM_SOV[4].FAULT OR CM_SOV[5].FAULT OR CM_SOV[6].FAULT OR CM_SOV[7].FAULT OR
+                     CM_SOV[8].FAULT OR CM_SOV[9].FAULT OR CM_SOV[10].FAULT OR CM_SOV[11].FAULT OR
+                     CM_SOV[12].FAULT OR CM_SOV[13].FAULT OR CM_SOV[14].FAULT OR CM_SOV[15].FAULT;
+
+(* Reserved — project-specific logic populates these *)
+CM_ALARMS.MTR_FLT  := 0;
+CM_ALARMS.HTR_FLT  := 0;
+CM_ALARMS.SEQ_FLT  := 0;
+CM_ALARMS.ILOCKS   := 0;
+CM_ALARMS.SEQUENCE := 0;
+CM_ALARMS.LCP      := 0;
+]]>
+            </STContent>
+          </Routine>
+
+        </Routines>
+      </Program>
+    </Programs>
+  </Controller>
+</RSLogix5000Content>

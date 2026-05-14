@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="36.00" TargetName="GeneralPanel_Foundation" TargetType="Controller" ContainsContext="true">
+  <Controller Use="Context" Name="GeneralPanel_Foundation">
+    <Programs Use="Context">
+      <Program Name="MainProgram" Use="Context">
+        <Routines Use="Context">
+
+          <Routine Name="CM_AO" Type="ST">
+            <STContent>
+              <![CDATA[
+(* ============================================================
+   CM_AO — Analog Output processing
+   Channels: CM_AOUT[0..7]
+   Foundation stub — no executable statements.
+   ============================================================
+
+   Per-channel implementation template:
+   ------------------------------------------------------------
+   Step 1: Clamp CMD to engineering unit range
+       IF CM_AOUT[i].CMD > CM_AOUT[i].EUHI THEN CM_AOUT[i].CMD := CM_AOUT[i].EUHI; END_IF;
+       IF CM_AOUT[i].CMD < CM_AOUT[i].EULO THEN CM_AOUT[i].CMD := CM_AOUT[i].EULO; END_IF;
+
+   Step 2: Scale to 4-20 mA raw counts (0-16383 = 0-20 mA, 3277 = 4 mA)
+       CM_AOUT[i].OUT := 3277 + REAL_TO_INT(
+           ((CM_AOUT[i].CMD - CM_AOUT[i].EULO) / (CM_AOUT[i].EUHI - CM_AOUT[i].EULO))
+           * (16383.0 - 3277.0));
+
+   Step 3: Override / bypass (MODE = 1 bypasses scaling and uses a fixed count)
+       IF CM_AOUT[i].MODE THEN
+           (* project-specific: write fixed counts or alternative value here *)
+       END_IF;
+   ============================================================ *)
+]]>
+            </STContent>
+          </Routine>
+
+        </Routines>
+      </Program>
+    </Programs>
+  </Controller>
+</RSLogix5000Content>

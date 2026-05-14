@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="36.00" TargetName="GeneralPanel_Foundation" TargetType="Controller" ContainsContext="true">
+  <Controller Use="Context" Name="GeneralPanel_Foundation">
+    <Programs Use="Context">
+      <Program Name="MainProgram" Use="Context">
+        <Routines Use="Context">
+
+          <Routine Name="MainRoutine" Type="ST">
+            <STContent>
+              <![CDATA[
+(* ============================================================
+   MainRoutine — R&D General Panel Foundation
+   Controller: 5069-L320ER  IP: 192.168.1.11  FW: v36.11
+   JSR calls only — no inline logic.
+   ============================================================ *)
+
+JSR(IO_MAP);          (* Step 1: Map raw I/O to CM_ structures *)
+JSR(CM_DI);           (* Step 2: Discrete input alarm processing *)
+JSR(CM_AI);           (* Step 3: Analog input processing (Slot 3 IF8) *)
+JSR(CM_TC);           (* Step 4: Thermocouple processing (Slots 4-6 IY4) *)
+JSR(CM_DO);           (* Step 5: Discrete output / solenoid valve control *)
+
+(* Step 6 — PROJECT-SPECIFIC ROUTINES — add JSR calls here per project *)
+
+JSR(CM_ALARMS_AGG);   (* Step 7: Alarm aggregate rollup *)
+]]>
+            </STContent>
+          </Routine>
+
+        </Routines>
+      </Program>
+    </Programs>
+  </Controller>
+</RSLogix5000Content>

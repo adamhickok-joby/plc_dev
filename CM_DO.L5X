@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="36.00" TargetName="GeneralPanel_Foundation" TargetType="Controller" ContainsContext="true">
+  <Controller Use="Context" Name="GeneralPanel_Foundation">
+    <Programs Use="Context">
+      <Program Name="MainProgram" Use="Context">
+        <Routines Use="Context">
+
+          <Routine Name="CM_DO" Type="ST">
+            <STContent>
+              <![CDATA[
+(* ============================================================
+   CM_DO — Solenoid Valve / Discrete Output processing
+   Channels: CM_SOV[0..15]
+   Foundation stub — no executable statements.
+   ============================================================
+
+   Per-channel implementation template:
+   ------------------------------------------------------------
+   Step 1: Fault detection
+     Fault timer runs when CMD and feedback disagree:
+       CM_SOV[i].FAULT_TIMER.PRE    := REAL_TO_DINT(CM_SOV[i].FAULT_TIME * 1000.0);
+       CM_SOV[i].FAULT_TIMER.EnableIn := (CM_SOV[i].CMD <> CM_SOV[i].FB_OPEN) OR
+                                         (CM_SOV[i].CMD  = CM_SOV[i].FB_CLOSED);
+       TONR(CM_SOV[i].FAULT_TIMER);
+       IF CM_SOV[i].FAULT_TIMER.DN THEN CM_SOV[i].FAULT := 1; END_IF;
+       IF CM_SOV[i].CMD = CM_SOV[i].FB_OPEN THEN CM_SOV[i].FAULT := 0; END_IF;
+
+   Step 2: Output resolution (ILOCK > OVERRIDE > CMD)
+       IF CM_SOV[i].ILOCK THEN
+           CM_SOV[i].OUT := 0;
+       ELSIF CM_SOV[i].OVERRIDE THEN
+           CM_SOV[i].OUT := CM_SOV[i].OVR_CMD;
+       ELSE
+           CM_SOV[i].OUT := CM_SOV[i].CMD;
+       END_IF;
+   ============================================================ *)
+]]>
+            </STContent>
+          </Routine>
+
+        </Routines>
+      </Program>
+    </Programs>
+  </Controller>
+</RSLogix5000Content>

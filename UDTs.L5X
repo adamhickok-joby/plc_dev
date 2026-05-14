@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="36.00" TargetName="GeneralPanel_Foundation" TargetType="Controller" ContainsContext="true">
+  <Controller Use="Context" Name="GeneralPanel_Foundation">
+    <DataTypes Use="Context">
+
+      <DataType Name="STRING10" Family="StringFamily" Use="Target">
+        <Members>
+          <Member Name="LEN" DataType="DINT" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="DATA" DataType="SINT" Dimension="10" Radix="ASCII" Hidden="false" ExternalAccess="Read/Write"/>
+        </Members>
+      </DataType>
+
+      <DataType Name="STRING40" Family="StringFamily" Use="Target">
+        <Members>
+          <Member Name="LEN" DataType="DINT" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="DATA" DataType="SINT" Dimension="40" Radix="ASCII" Hidden="false" ExternalAccess="Read/Write"/>
+        </Members>
+      </DataType>
+
+      <DataType Name="CM_AIN" Family="NoFamily" Use="Target">
+        <Members>
+          <Member Name="IN"           DataType="INT"       Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="TAG_ID"       DataType="STRING40"                   Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="DESC"         DataType="STRING"                     Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="EU"           DataType="STRING10"                   Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="PV"           DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="PV_SIM"       DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="EULO"         DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="EUHI"         DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HHAL"         DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HAL"          DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LAL"          DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LLAL"         DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="SCALE"        DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="OFFSET"       DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ALMDB"        DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ALARMTIME"    DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ALARMDELAY"   DataType="FBD_TIMER"                  Hidden="false" ExternalAccess="Read/Write" Radix="NullType"/>
+          <Member Name="ALARM"        DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="BLINK"        DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HHAI"         DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HAI"          DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LAI"          DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LLAI"         DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HHEN"         DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HEN"          DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LEN"          DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LLEN"         DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HHEN_PRG"     DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HEN_PRG"      DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LEN_PRG"      DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LLEN_PRG"     DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="BAD"          DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ACK"          DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ACKD"         DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="FLAG"         DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="MODE"         DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ALMpri"       DataType="INT"       Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="CONV"         DataType="INT"       Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+        </Members>
+      </DataType>
+
+      <DataType Name="CM_DIN" Family="NoFamily" Use="Target">
+        <Members>
+          <Member Name="ID"              DataType="STRING40"                   Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="DESC"            DataType="STRING"                     Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="IN"              DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ALARM"           DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ACK"             DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ACKD"            DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="NC"              DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="INTERMITTENT"    DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ALARM_DISABLE"   DataType="BOOL"      Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ALARMTIME"       DataType="REAL"      Radix="Float"    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ALARMDELAY"      DataType="FBD_TIMER"                  Hidden="false" ExternalAccess="Read/Write" Radix="NullType"/>
+          <Member Name="INTERMIT_DELAY"  DataType="FBD_TIMER"                  Hidden="false" ExternalAccess="Read/Write" Radix="NullType"/>
+          <Member Name="INTERMIT_COUNT"  DataType="FBD_COUNTER"                Hidden="false" ExternalAccess="Read/Write" Radix="NullType"/>
+          <Member Name="INTERMIT_TIME"   DataType="INT"       Radix="Decimal"  Hidden="false" ExternalAccess="Read/Write"/>
+        </Members>
+      </DataType>
+
+      <DataType Name="CM_SOV" Family="NoFamily" Use="Target">
+        <Members>
+          <Member Name="TAG_ID"      DataType="STRING40"                  Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="DESC"        DataType="STRING"                    Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="CMD"         DataType="BOOL"     Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="OUT"         DataType="BOOL"     Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="FB_OPEN"     DataType="BOOL"     Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="FB_CLOSED"   DataType="BOOL"     Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="FAULT"       DataType="BOOL"     Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="OVERRIDE"    DataType="BOOL"     Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="OVR_CMD"     DataType="BOOL"     Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ILOCK"       DataType="BOOL"     Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="FAULT_TIME"  DataType="REAL"     Radix="Float"   Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="FAULT_TIMER" DataType="FBD_TIMER"                Hidden="false" ExternalAccess="Read/Write" Radix="NullType"/>
+        </Members>
+      </DataType>
+
+      <DataType Name="CM_ALARMS" Family="NoFamily" Use="Target">
+        <Members>
+          <Member Name="HIHI_1"    DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HIHI_2"    DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HI_1"      DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HI_2"      DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LO_1"      DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LO_2"      DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LOLO_1"    DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LOLO_2"    DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="BAD_1"     DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="BAD_2"     DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ACKD_1"    DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ACKD_2"    DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="MTR_FLT"   DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="VLV_FLT"   DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="HTR_FLT"   DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="SEQ_FLT"   DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="ILOCKS"    DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="SEQUENCE"  DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+          <Member Name="LCP"       DataType="BOOL" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write"/>
+        </Members>
+      </DataType>
+
+    </DataTypes>
+  </Controller>
+</RSLogix5000Content>

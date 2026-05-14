@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="36.00" TargetName="GeneralPanel_Foundation" TargetType="Controller" ContainsContext="true">
+  <Controller Use="Context" Name="GeneralPanel_Foundation">
+    <Tags Use="Context">
+
+      <Tag Name="CM_AIN" TagType="Base" DataType="CM_AIN" Dimensions="20" Radix="NullType" Constant="false" ExternalAccess="Read/Write">
+        <Description>
+          <![CDATA[Analog Input array (20 channels).
+  [0..7]  = Slot 3 IF8 (5069-IF8, 4-20mA): Ch00..Ch07
+  [8..11] = Slot 4 IY4 (5069-IY4, TC):     Ch00..Ch03
+  [12..15]= Slot 5 IY4 (5069-IY4, TC):     Ch00..Ch03
+  [16..19]= Slot 6 IY4 (5069-IY4, TC):     Ch00..Ch03]]>
+        </Description>
+      </Tag>
+
+      <Tag Name="CM_DIN" TagType="Base" DataType="CM_DIN" Dimensions="16" Radix="NullType" Constant="false" ExternalAccess="Read/Write">
+        <Description>
+          <![CDATA[Discrete Input array (16 channels).
+  [0..15] = Slot 1 (5069-IB16): Data[0].0..Data[0].15]]>
+        </Description>
+      </Tag>
+
+      <Tag Name="CM_SOV" TagType="Base" DataType="CM_SOV" Dimensions="16" Radix="NullType" Constant="false" ExternalAccess="Read/Write">
+        <Description>
+          <![CDATA[Solenoid Valve / Discrete Output array (16 channels).
+  [0..15] = Slot 2 (5069-OB16): Data[0].0..Data[0].15]]>
+        </Description>
+      </Tag>
+
+      <Tag Name="CM_ALARMS" TagType="Base" DataType="CM_ALARMS" Radix="NullType" Constant="false" ExternalAccess="Read/Write">
+        <Description>
+          <![CDATA[System alarm aggregate rollup. Computed each scan by CM_ALARMS_AGG routine.]]>
+        </Description>
+      </Tag>
+
+    </Tags>
+  </Controller>
+</RSLogix5000Content>

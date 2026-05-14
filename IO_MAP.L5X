@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="36.00" TargetName="GeneralPanel_Foundation" TargetType="Controller" ContainsContext="true">
+  <Controller Use="Context" Name="GeneralPanel_Foundation">
+    <Programs Use="Context">
+      <Program Name="MainProgram" Use="Context">
+        <Routines Use="Context">
+
+          <Routine Name="IO_MAP" Type="ST">
+            <STContent>
+              <![CDATA[
+(* ============================================================
+   IO_MAP — Raw I/O binding routine
+   R&D General Panel | GeneralPanel_Foundation | FW v36.11
+   Hardware:
+     Slot 1: 5069-IB16  — 16-ch DI  (tag prefix Slot1_DI)
+     Slot 2: 5069-OB16  — 16-ch DO  (tag prefix Slot2_DO)
+     Slot 3: 5069-IF8   — 8-ch AI   (tag prefix Slot3_AI)
+     Slot 4: 5069-IY4   — 4-ch TC   (tag prefix Slot4_TC)
+     Slot 5: 5069-IY4   — 4-ch TC   (tag prefix Slot5_TC)
+     Slot 6: 5069-IY4   — 4-ch TC   (tag prefix Slot6_TC)
+
+   NOTE: DO writes reflect the CM_SOV.OUT value from the
+   PREVIOUS scan.  If same-scan DO update is required,
+   split this routine into IO_MAP_IN (called before CM_DO)
+   and IO_MAP_OUT (called after CM_DO).
+   ============================================================ *)
+
+(* --- Discrete Inputs: Slot 1 IB16 -> CM_DIN[].IN --- *)
+CM_DIN[0].IN  := Slot1_DI:I.Data[0].0;
+CM_DIN[1].IN  := Slot1_DI:I.Data[0].1;
+CM_DIN[2].IN  := Slot1_DI:I.Data[0].2;
+CM_DIN[3].IN  := Slot1_DI:I.Data[0].3;
+CM_DIN[4].IN  := Slot1_DI:I.Data[0].4;
+CM_DIN[5].IN  := Slot1_DI:I.Data[0].5;
+CM_DIN[6].IN  := Slot1_DI:I.Data[0].6;
+CM_DIN[7].IN  := Slot1_DI:I.Data[0].7;
+CM_DIN[8].IN  := Slot1_DI:I.Data[0].8;
+CM_DIN[9].IN  := Slot1_DI:I.Data[0].9;
+CM_DIN[10].IN := Slot1_DI:I.Data[0].10;
+CM_DIN[11].IN := Slot1_DI:I.Data[0].11;
+CM_DIN[12].IN := Slot1_DI:I.Data[0].12;
+CM_DIN[13].IN := Slot1_DI:I.Data[0].13;
+CM_DIN[14].IN := Slot1_DI:I.Data[0].14;
+CM_DIN[15].IN := Slot1_DI:I.Data[0].15;
+
+(* --- Discrete Outputs: CM_SOV[].OUT -> Slot 2 OB16 --- *)
+Slot2_DO:O.Data[0].0  := CM_SOV[0].OUT;
+Slot2_DO:O.Data[0].1  := CM_SOV[1].OUT;
+Slot2_DO:O.Data[0].2  := CM_SOV[2].OUT;
+Slot2_DO:O.Data[0].3  := CM_SOV[3].OUT;
+Slot2_DO:O.Data[0].4  := CM_SOV[4].OUT;
+Slot2_DO:O.Data[0].5  := CM_SOV[5].OUT;
+Slot2_DO:O.Data[0].6  := CM_SOV[6].OUT;
+Slot2_DO:O.Data[0].7  := CM_SOV[7].OUT;
+Slot2_DO:O.Data[0].8  := CM_SOV[8].OUT;
+Slot2_DO:O.Data[0].9  := CM_SOV[9].OUT;
+Slot2_DO:O.Data[0].10 := CM_SOV[10].OUT;
+Slot2_DO:O.Data[0].11 := CM_SOV[11].OUT;
+Slot2_DO:O.Data[0].12 := CM_SOV[12].OUT;
+Slot2_DO:O.Data[0].13 := CM_SOV[13].OUT;
+Slot2_DO:O.Data[0].14 := CM_SOV[14].OUT;
+Slot2_DO:O.Data[0].15 := CM_SOV[15].OUT;
+
+(* --- Analog Inputs: Slot 3 IF8 (4-20mA) -> CM_AIN[0..7].IN --- *)
+CM_AIN[0].IN := Slot3_AI:I.Ch00Data;
+CM_AIN[1].IN := Slot3_AI:I.Ch01Data;
+CM_AIN[2].IN := Slot3_AI:I.Ch02Data;
+CM_AIN[3].IN := Slot3_AI:I.Ch03Data;
+CM_AIN[4].IN := Slot3_AI:I.Ch04Data;
+CM_AIN[5].IN := Slot3_AI:I.Ch05Data;
+CM_AIN[6].IN := Slot3_AI:I.Ch06Data;
+CM_AIN[7].IN := Slot3_AI:I.Ch07Data;
+
+(* --- TC Inputs: Slot 4 IY4 -> CM_AIN[8..11].IN --- *)
+CM_AIN[8].IN  := Slot4_TC:I.Ch00Data;
+CM_AIN[9].IN  := Slot4_TC:I.Ch01Data;
+CM_AIN[10].IN := Slot4_TC:I.Ch02Data;
+CM_AIN[11].IN := Slot4_TC:I.Ch03Data;
+
+(* --- TC Inputs: Slot 5 IY4 -> CM_AIN[12..15].IN --- *)
+CM_AIN[12].IN := Slot5_TC:I.Ch00Data;
+CM_AIN[13].IN := Slot5_TC:I.Ch01Data;
+CM_AIN[14].IN := Slot5_TC:I.Ch02Data;
+CM_AIN[15].IN := Slot5_TC:I.Ch03Data;
+
+(* --- TC Inputs: Slot 6 IY4 -> CM_AIN[16..19].IN --- *)
+CM_AIN[16].IN := Slot6_TC:I.Ch00Data;
+CM_AIN[17].IN := Slot6_TC:I.Ch01Data;
+CM_AIN[18].IN := Slot6_TC:I.Ch02Data;
+CM_AIN[19].IN := Slot6_TC:I.Ch03Data;
+]]>
+            </STContent>
+          </Routine>
+
+        </Routines>
+      </Program>
+    </Programs>
+  </Controller>
+</RSLogix5000Content>
